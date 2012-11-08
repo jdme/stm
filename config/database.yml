@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: stm_development
+  pool: 5
+  username: postgres
+  password:
+
+test:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: stm_test
+  pool: 5
+  username: postgres
+  password:
+
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: stm_production
+  pool: 5
+  username: postgres
+  password:
