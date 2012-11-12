@@ -1,7 +1,10 @@
 Stm::Application.routes.draw do
-  resources :stories
 
   resources :users
+
+  resources :stories
+
+  resource :session
 
   # get "home/index"
 

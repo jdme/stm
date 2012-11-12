@@ -54,3 +54,6 @@ gem 'minitest'
 
 # Haml
 gem 'haml-rails'
+
+# For Authorisation
+gem 'bcrypt-ruby'
