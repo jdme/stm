@@ -5,8 +5,8 @@
     = f.input :title
     = f.input :description
     = f.input :status
-    = f.input :orderby
-    = f.input :user_id
+    = f.input :order_by
+    = f.input :user_id, :collection => User.all
 
   .form-actions
     = f.button :submit

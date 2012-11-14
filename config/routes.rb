@@ -1,14 +1,20 @@
 Stm::Application.routes.draw do
 
+  get "story_comments/create"
+
+  get "story_comments/destroy"
+
   resources :users
 
-  resources :stories
+  resources :stories do
+    resources :story_comments
+  end
 
   resource :session
 
   # get "home/index"
 
-  root :to => "home#index"
+  root :to => "stories#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

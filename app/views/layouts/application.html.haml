@@ -36,20 +36,19 @@
     .navbar
       .navbar-inner
         = link_to "STM", root_url, :class=>'brand'
-        %ul.nav
-          %li= link_to "Users", :controller => 'users'
-          %li= link_to "Stories", :controller => 'stories'
+        - if current_user
+          %ul.nav.pull-left
+            %li= link_to "Users", :controller => 'users'
+            %li= link_to "Stories", :controller => 'stories'
+        %ul.nav.pull-right
           - if current_user
+            %li= link_to "#{current_user.name} logged in", "#"
             %li= link_to "Log out", session_path, :method => :delete
           - else
             %li= link_to "Log in", new_session_path
 
     .container
-      - if flash[:alert]
-        .alert.alert-error= flash[:alert]
-      - if flash[:notice]
-        .alert.alert-success= flash[:notice]
-
+      = bootstrap_flash
       .row
         .span9= yield
 

@@ -57,3 +57,8 @@ gem 'haml-rails'
 
 # For Authorisation
 gem 'bcrypt-ruby'
+
+# Validators
+gem 'validates'
+
+gem 'unicorn'

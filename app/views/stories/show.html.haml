@@ -1,3 +1,5 @@
+%h2 Story
+
 %p#notice= notice
 
 %p
@@ -10,8 +12,8 @@
   %b Status:
   = @story.status
 %p
-  %b Orderby:
-  = @story.orderby
+  %b Order by:
+  = @story.order_by
 %p
   %b User:
   = @story.user_id
@@ -19,3 +21,17 @@
 = link_to 'Edit', edit_story_path(@story)
 \|
 = link_to 'Back', stories_path
+
+%h2 Comments
+- @story.story_comments.each do |c|
+  .comment-item= html_escape c.comment
+
+%h2 New comment
+= simple_form_for [@story, @story.story_comments.build] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :comment
+
+  .form-actions
+    = f.button :submit
