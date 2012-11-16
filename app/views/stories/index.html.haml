@@ -1,12 +1,12 @@
 %h1 Listing stories
 
-%table
+%table.table
   %tr
-    %th Title
-    %th Description
-    %th Status
-    %th Order by
-    %th User
+    %th= Story.human_attribute_name("title")
+    %th= Story.human_attribute_name("description")
+    %th= Story.human_attribute_name("status")
+    %th= Story.human_attribute_name("order_by")
+    %th= Story.human_attribute_name("user")
     %th
     %th
     %th

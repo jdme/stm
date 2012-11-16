@@ -36,12 +36,12 @@
     .navbar
       .navbar-inner
         = link_to "STM", root_url, :class=>'brand'
-        - if current_user
+        - if signed_in?
           %ul.nav.pull-left
-            %li= link_to "Users", :controller => 'users'
-            %li= link_to "Stories", :controller => 'stories'
+            %li= link_to "Users", users_path
+            %li= link_to "Stories", stories_path
         %ul.nav.pull-right
-          - if current_user
+          - if signed_in?
             %li= link_to "#{current_user.name} logged in", "#"
             %li= link_to "Log out", session_path, :method => :delete
           - else

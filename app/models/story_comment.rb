@@ -1,7 +1,7 @@
 class StoryComment < ActiveRecord::Base
   attr_accessible :comment, :story_id, :user_id
 
-  validates_presence_of :user, :story, :comment
+  validates :user, :story, :comment, :presence => true
 
   belongs_to :user
   belongs_to :story

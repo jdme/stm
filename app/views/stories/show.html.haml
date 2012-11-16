@@ -3,19 +3,19 @@
 %p#notice= notice
 
 %p
-  %b Title:
+  %b= Story.human_attribute_name("title")
   = @story.title
 %p
-  %b Description:
+  %b= Story.human_attribute_name("description")
   = @story.description
 %p
-  %b Status:
+  %b= Story.human_attribute_name("status")
   = @story.status
 %p
-  %b Order by:
+  %b= Story.human_attribute_name("order_by")
   = @story.order_by
 %p
-  %b User:
+  %b= Story.human_attribute_name("user")
   = @story.user_id
 
 = link_to 'Edit', edit_story_path(@story)
@@ -23,11 +23,18 @@
 = link_to 'Back', stories_path
 
 %h2 Comments
-- @story.story_comments.each do |c|
-  .comment-item= html_escape c.comment
+- @story.comments.each do |c|
+  - # Чтобы новый коммент не попадал в список
+  - unless c.new_record?
+    .comment-item.well.well-small
+      .comment-content= html_escape c.comment
+      .comment-details.pull-right.muted= "Posted by #{c.user.name} #{time_ago_in_words c.created_at} ago"
+      .clearfix
 
 %h2 New comment
-= simple_form_for [@story, @story.story_comments.build] do |f|
+
+- # Чтобы выводились ошибки формы
+= simple_form_for @story_comment, :url => story_comments_path(@story) do |f|
   = f.error_notification
 
   .form-inputs

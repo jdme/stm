@@ -1,14 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b= User.human_attribute_name("name")
   = @user.name
 %p
-  %b Email:
+  %b= User.human_attribute_name("email")
   = @user.email
-%p
-  %b Password digest:
-  = @user.password_digest
 
 = link_to 'Edit', edit_user_path(@user)
 \|

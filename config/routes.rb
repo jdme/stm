@@ -1,13 +1,11 @@
 Stm::Application.routes.draw do
 
-  get "story_comments/create"
-
-  get "story_comments/destroy"
-
   resources :users
 
   resources :stories do
-    resources :story_comments
+    scope :module => :stories do
+      resources :comments
+    end
   end
 
   resource :session

@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
+    sign_in @user
   end
 
   test "should get index" do
@@ -35,7 +36,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { email: @user.email, name: @user.name, password_digest: @user.password_digest }
+    put :update, id: @user, user: { email: @user.email, name: @user.name}
     assert_redirected_to user_path(assigns(:user))
   end
 

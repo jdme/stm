@@ -48,10 +48,6 @@ gem 'twitter-bootstrap-rails'
 # PostgreSQL
 gem 'pg'
 
-# Minitest
-gem 'minitest-reporters'
-gem 'minitest'
-
 # Haml
 gem 'haml-rails'
 
@@ -62,3 +58,11 @@ gem 'bcrypt-ruby'
 gem 'validates'
 
 gem 'unicorn'
+
+# Testing
+gem 'factory_girl_rails'
+gem 'minitest-reporters'
+gem 'minitest'
+
+# State machine
+gem 'state_machine'
