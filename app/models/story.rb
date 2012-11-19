@@ -5,7 +5,7 @@ class Story < ActiveRecord::Base
   validates :user, :title, :status, :description, :presence => true
 
   belongs_to :user
-  has_many :comments, :class_name => 'StoryComment'
+  has_many :comments
 
   def self.status_list
     #{

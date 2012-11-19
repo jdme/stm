@@ -8,11 +8,7 @@ module AuthHelper
   end
 
   def signed_in?
-    if current_user
-      true
-    else
-      false
-    end
+    !!current_user
   end
 
   def current_user

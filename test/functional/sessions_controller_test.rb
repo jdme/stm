@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   setup do
-    @user = users(:one)
+    @user = FactoryGirl.create(:user)
   end
 
   test "should get create" do

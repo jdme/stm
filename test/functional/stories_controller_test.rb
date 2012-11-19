@@ -2,9 +2,9 @@ require 'test_helper'
 
 class StoriesControllerTest < ActionController::TestCase
   setup do
-    @user = users(:one)
+    @user = FactoryGirl.create(:user)
     sign_in @user
-    @story = stories(:one)
+    @story = FactoryGirl.create(:story)
   end
 
   test "should get index" do

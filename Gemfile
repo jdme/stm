@@ -60,9 +60,11 @@ gem 'validates'
 gem 'unicorn'
 
 # Testing
-gem 'factory_girl_rails'
-gem 'minitest-reporters'
-gem 'minitest'
+group :test do
+  gem 'factory_girl_rails'
+  gem 'minitest-reporters'
+  gem 'minitest'
+end
 
 # State machine
 gem 'state_machine'
