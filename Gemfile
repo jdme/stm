@@ -61,9 +61,10 @@ gem 'unicorn'
 
 # Testing
 group :test do
-  gem 'factory_girl_rails'
-  gem 'minitest-reporters'
   gem 'minitest'
+  gem 'factory_girl_rails'
+  gem 'tconsole'
+  gem 'turn'
 end
 
 # State machine
