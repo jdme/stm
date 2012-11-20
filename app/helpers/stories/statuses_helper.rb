@@ -1,0 +1,2 @@
+module Stories::StatusesHelper
+end

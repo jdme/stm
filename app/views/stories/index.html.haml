@@ -15,7 +15,12 @@
     %tr
       %td= story.title
       %td= story.description
-      %td= story.status
+      %td
+        = story.status_name
+        - story.status_transitions.each do |t|
+          = form_for(story, :url => story_status_path(story), :method => :put) do |f|
+            = f.hidden_field :status_event, :value => t.event
+            = f.button t.event.to_s.humanize
       %td= story.order_by
       %td= story.user_id
       %td= link_to 'Show', story

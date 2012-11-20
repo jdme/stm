@@ -5,6 +5,7 @@ Stm::Application.routes.draw do
   resources :stories do
     scope :module => :stories do
       resources :comments
+      put "status", :controller => :statuses, :action => :update
     end
   end
 
