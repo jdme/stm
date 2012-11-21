@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+//
+$('#filters select').change(function(){
+    $(this).parents('form').first().submit();
+});

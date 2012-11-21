@@ -1,5 +1,14 @@
 %h1 Listing stories
 
+#filters
+  = form_tag stories_path, :method => :get do
+    .filter
+      User:
+      = select_tag("filter[user_id]", options_from_collection_for_select(User.all, "id", "name",@filter['user_id']), :include_blank => true)
+    .filter
+      Status:
+      = select_tag("filter[status]", options_from_collection_for_select(Story.state_machine(:status).states,"value","name",@filter['status']), :include_blank => true)
+
 %table.table
   %tr
     %th= Story.human_attribute_name("title")
@@ -18,11 +27,11 @@
       %td
         = story.status_name
         - story.status_transitions.each do |t|
-          = form_for(story, :url => story_status_path(story), :method => :put) do |f|
+          = form_for(story, :url => change_status_story_path(story), :method => :put) do |f|
             = f.hidden_field :status_event, :value => t.event
             = f.button t.event.to_s.humanize
       %td= story.order_by
-      %td= story.user_id
+      %td= story.user.name
       %td= link_to 'Show', story
       %td= link_to 'Edit', edit_story_path(story)
       %td= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' }

@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114140240) do
+ActiveRecord::Schema.define(:version => 20121121113457) do
 
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "status"
-    t.integer  "order_by"
+    t.integer  "order_by",    :default => 0, :null => false
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "story_comments", :force => true do |t|

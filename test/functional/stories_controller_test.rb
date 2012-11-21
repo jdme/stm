@@ -48,4 +48,10 @@ class StoriesControllerTest < ActionController::TestCase
 
     assert_redirected_to stories_path
   end
+
+  test "should redirect" do
+    put :change_status, id: @story, story: { event: 'start' }
+    assert_response :redirect
+  end
+
 end

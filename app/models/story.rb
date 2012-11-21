@@ -1,7 +1,7 @@
 class Story < ActiveRecord::Base
   attr_accessible :description, :order_by, :title, :user_id
 
-  validates :order_by, :numericality => true
+  validates :order_by, :numericality => true, :allow_blank => true
   validates :user, :presence => true
   validates :title, :presence => true
   validates :description, :presence => true
@@ -9,13 +9,15 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
+  scope :sorted, :order => "order_by DESC"
+
   state_machine :status, :initial => :new do
 
-    state :new, :value => "N"
-    state :started, :value => "S"
-    state :finished, :value => "F"
-    state :accepted, :value => "A"
-    state :rejected, :value => "R"
+    state :new
+    state :started
+    state :finished
+    state :accepted
+    state :rejected
 
     event :renew do
       transition :accepted => :new
@@ -39,19 +41,8 @@ class Story < ActiveRecord::Base
 
   end
 
-  #def self.status_list
-  #  #{
-  #  #    N: "New",
-  #  #    S: "Started",
-  #  #    F: "Finished",
-  #  #    A: "Accepted",
-  #  #    R: "Rejected"
-  #  #}
-  #  [:N, :S, :F, :A, :R]
-  #end
-
-  def status_event= (event)
-    fire_status_event(event) unless event.blank?
+  def order_by=(value)
+    write_attribute(:order_by, value.to_i)
   end
 
 end

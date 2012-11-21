@@ -2,7 +2,17 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+
+    @filter = {}
+    @filter.merge!(params[:filter]) unless params[:filter].blank?
+
+    conditions = {}
+    unless @filter.blank?
+      conditions.merge! :user_id => @filter["user_id"] unless @filter["user_id"].blank?
+      conditions.merge! :status => @filter["status"] unless @filter["status"].blank?
+    end
+
+    @stories = Story.sorted.all(:conditions => conditions)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +51,6 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(params[:story])
-
     respond_to do |format|
       if @story.save
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
@@ -79,5 +88,11 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_url }
       format.json { head :no_content }
     end
+  end
+
+  def change_status
+    @story = Story.find(params[:id])
+    @story.fire_status_event(params[:story][:status_event]) unless params[:story][:status_event].blank?
+    redirect_to stories_path
   end
 end

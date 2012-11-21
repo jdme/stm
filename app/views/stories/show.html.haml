@@ -16,7 +16,7 @@
   = @story.order_by
 %p
   %b= Story.human_attribute_name("user")
-  = @story.user_id
+  = @story.user.name
 
 = link_to 'Edit', edit_story_path(@story)
 \|
