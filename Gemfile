@@ -71,3 +71,5 @@ end
 gem 'state_machine'
 
 gem 'usefull_scopes', :git => "https://github.com/kaize/usefull_scopes.git"
+
+gem 'ransack'

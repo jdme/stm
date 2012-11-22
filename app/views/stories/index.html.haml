@@ -1,14 +1,9 @@
 %h1 Listing stories
 
 #filters
-  = form_tag stories_path, :method => :get do
-    .filter
-      User:
-      = select_tag("filter[user_id]", options_from_collection_for_select(User.all, "id", "name",@filter['user_id']), :include_blank => true)
-    .filter
-      Status:
-      = select_tag("filter[status]", options_from_collection_for_select(Story.state_machine(:status).states,"value","name",@filter['status']), :include_blank => true)
-
+  = simple_form_for @q, :url => stories_path, :html => {:method => :get} do |f|
+    = f.input :user_id_eq, :collection => story_users
+    = f.input :status_eq, :collection => story_states
 %table.table
   %tr
     %th= Story.human_attribute_name("title")

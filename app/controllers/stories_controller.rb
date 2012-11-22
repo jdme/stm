@@ -3,14 +3,10 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
 
-    @filter = {}
-    @filter.merge!(params[:filter]) unless params[:filter].blank?
+    @q = Story.search(params[:q])
+    @stories = @q.result(:distinct => true)
 
-    @stories = Story.sorted
-    unless @filter.blank?
-      @stories = @stories.where(:user_id => @filter["user_id"]) unless @filter["user_id"].blank?
-      @stories = @stories.where(:status => @filter["status"]) unless @filter["status"].blank?
-    end
+    #@stories = Story.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -93,4 +89,5 @@ class StoriesController < ApplicationController
     @story.fire_status_event(params[:story][:status_event]) unless params[:story][:status_event].blank?
     redirect_to stories_path
   end
+
 end

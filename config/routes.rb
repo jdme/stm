@@ -9,6 +9,9 @@ Stm::Application.routes.draw do
     member do
       put 'change_status'
     end
+    collection do
+      match 'search' => 'stories#search', :via => [:get, :post], :as => :search
+    end
   end
 
   resource :session
