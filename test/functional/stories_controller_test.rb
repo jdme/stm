@@ -49,9 +49,10 @@ class StoriesControllerTest < ActionController::TestCase
     assert_redirected_to stories_path
   end
 
-  test "should redirect" do
-    put :change_status, id: @story, story: { event: 'start' }
+  test "should redirect and status change" do
+    put :change_status, id: @story, story: { status_event: 'start' }
     assert_response :redirect
+    assert Story.where(:status => 'started').find(@story.id)
   end
 
 end
