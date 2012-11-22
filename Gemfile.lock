@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/kaize/usefull_scopes.git
+  revision: ea8539108351cae5516b547f2e86d539133d3df3
+  specs:
+    usefull_scopes (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -163,4 +169,5 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   unicorn
+  usefull_scopes!
   validates

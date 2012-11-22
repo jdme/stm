@@ -9,7 +9,7 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
-  scope :sorted, :order => "order_by DESC"
+  scope :sorted, order("order_by DESC")
 
   state_machine :status, :initial => :new do
 
