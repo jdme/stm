@@ -4,6 +4,6 @@ module StoriesHelper
   end
 
   def story_users
-    User.all
+    User.scoped
   end
 end

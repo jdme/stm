@@ -52,7 +52,8 @@ class StoriesControllerTest < ActionController::TestCase
   test "should redirect and status change" do
     put :change_status, id: @story, story: { status_event: 'start' }
     assert_response :redirect
-    assert Story.where(:status => 'started').find(@story.id)
+    @story.reload
+    assert_equal @story.status, 'started'
   end
 
 end
